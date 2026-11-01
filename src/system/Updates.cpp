@@ -30,8 +30,10 @@ QString Updates::repository()
 
 QString Updates::canonicalRepository(const QString &repository)
 {
-    if (repository.compare(QLatin1StringView("ceoweb20/swiftify"), Qt::CaseInsensitive) == 0)
-        return QStringLiteral("ceoweb20/swiftifyplusplus");
+    for (const auto *old : {"ceoweb20/swiftify", "ceoweb20/swiftifyplusplus"}) {
+        if (repository.compare(QLatin1StringView(old), Qt::CaseInsensitive) == 0)
+            return QStringLiteral("eyesclose/betterswiftify");
+    }
     return repository;
 }
 
@@ -40,7 +42,7 @@ QString Updates::repositoryId()
     const QString configured = QStringLiteral(SWIFTIFY_UPDATE_REPOSITORY_ID);
     if (!configured.isEmpty()) return configured;
     // Also migrate local builds whose existing CMake cache still has the old name.
-    if (repository().compare(QLatin1StringView("ceoweb20/swiftifyplusplus"), Qt::CaseInsensitive) == 0)
+    if (repository().compare(QLatin1StringView("eyesclose/betterswiftify"), Qt::CaseInsensitive) == 0)
         return QStringLiteral("1423888200");
     return {};
 }

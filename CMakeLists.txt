@@ -60,7 +60,7 @@ option(SWIFTIFY_DESKTOP_INTEGRATION "Build the Linux desktop integration" ${SWIF
 # Soloist fallback support is always built; its binary is downloaded at runtime
 # rather than shipped, as Spotify's terms require.
 option(SWIFTIFY_BUILD_UPDATER "Build the standalone signed-update installer" ON)
-set(SWIFTIFY_UPDATE_REPOSITORY "ceoweb20/swiftifyplusplus" CACHE STRING "GitHub owner/name whose published releases are offered by in-app updates")
+set(SWIFTIFY_UPDATE_REPOSITORY "eyesclose/betterswiftify" CACHE STRING "GitHub owner/name whose published releases are offered by in-app updates")
 if(NOT SWIFTIFY_UPDATE_REPOSITORY MATCHES "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
     message(FATAL_ERROR "SWIFTIFY_UPDATE_REPOSITORY must look like owner/name")
 endif()

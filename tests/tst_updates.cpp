@@ -13,8 +13,8 @@ class UpdatesTest : public QObject {
 private slots:
     void oldRepositoryNameMigratesWithoutChangingOtherForks()
     {
-        QCOMPARE(Updates::canonicalRepository(QStringLiteral("ceoweb20/swiftify")), QStringLiteral("ceoweb20/swiftifyplusplus"));
-        QCOMPARE(Updates::canonicalRepository(QStringLiteral("CEOWEB20/Swiftify")), QStringLiteral("ceoweb20/swiftifyplusplus"));
+        for (const auto *old : {"ceoweb20/swiftify", "CEOWEB20/Swiftify", "ceoweb20/swiftifyplusplus"})
+            QCOMPARE(Updates::canonicalRepository(QString::fromLatin1(old)), QStringLiteral("eyesclose/betterswiftify"));
         QCOMPARE(Updates::canonicalRepository(QStringLiteral("someone-else/swiftify")), QStringLiteral("someone-else/swiftify"));
     }
 

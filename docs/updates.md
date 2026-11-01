@@ -19,7 +19,7 @@ workflow. The tag must exactly match `v<version>` from `CMakeLists.txt`. Drafts,
 prereleases and Actions artifacts are never offered as OTA updates.
 
 Each build updates from the repository that built it (`SWIFTIFY_UPDATE_REPOSITORY`,
-set from `github.repository` in CI, default `ceoweb20/swiftifyplusplus`). CI also
+set from `github.repository` in CI, default `eyesclose/betterswiftify`). CI also
 pins `SWIFTIFY_UPDATE_REPOSITORY_ID` from `github.repository_id`. Update discovery
 uses that stable numeric API endpoint; release asset URLs must match the exact
 repository, tag and filename in the response fetched from that pinned endpoint.
@@ -28,11 +28,12 @@ still refused. The package/signature verification key is unchanged.
 
 ### migrating pre-rename installations
 
-The old `ceoweb20/swiftify` API address redirects to
+The repository has been renamed twice: `ceoweb20/swiftify`, then
+`ceoweb20/swiftifyplusplus`, now `eyesclose/betterswiftify`. The old API addresses redirect to
 `/repositories/1423888200/releases/latest`. Pre-fix binaries reject that redirect
 with “The update download URL was refused.” They cannot download their own fix.
 Install a current DMG/setup package from
-[the renamed repository's releases](https://github.com/ceoweb20/swiftifyplusplus/releases/latest)
+[the renamed repository's releases](https://github.com/eyesclose/betterswiftify/releases/latest)
 once; do not remove the data directory. Credentials, settings and the library
 remain outside the replaced application. Subsequent updates use the corrected
 repository identity. New local builds also migrate the old cached repository name.
