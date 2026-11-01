@@ -28,6 +28,7 @@
 #include "audio/AudioShaping.h"
 #include "core/RustCore.h"
 #include "library/LibraryStore.h"
+#include "motion/ScrollMomentum.h"
 #include "playback/PlaybackController.h"
 #include "playback/DjMix.h"
 #include "render/SpectrumSource.h"
@@ -285,6 +286,11 @@ int main(int argc, char *argv[])
 #ifdef Q_OS_MACOS
     WindowTuner windowTuner;
     application.installEventFilter(&windowTuner);
+#endif
+#ifdef Q_OS_LINUX
+    // a trackpad swipe glides on after the fingers lift, as macos does itself
+    ScrollMomentum scrollMomentum;
+    application.installEventFilter(&scrollMomentum);
 #endif
 
     // the plain style: every control swiftify shows is drawn by its own components.
