@@ -1,52 +1,121 @@
-# swiftify
+<div align="center">
 
-a spotify desktop player, the way i want to use it.
+<img src="packaging/icons/swiftify-256.png" width="120" alt="betterswiftify icon">
 
-[download](https://github.com/ceoweb20/swiftify/releases/latest) · [first launch](#first-launch) · [build from source](#build-from-source) · [upstream](https://github.com/swiftify-org/swiftify)
+# BetterSwiftify
 
-this is my personal fork of [swiftify](https://github.com/swiftify-org/swiftify), not a separate project built from scratch. i keep what i use, add what i miss, and remove what feels like clutter to me. compared with the original, this is the version i find more comfortable to use. it follows my preferences, not a plan to be the right client for everyone.
+**a spotify desktop player, the way i want to use it.**
 
-the foundation is still c++ and qt quick, with a rust core built around [librespot](https://github.com/librespot-org/librespot). no electron or bundled web browser.
+material 3 expressive · cover-driven themes · personal dj mix · no electron
 
-![swiftify home with dj mix, pinned playlists and the current track](docs/screenshots/showcase-home.png)
+[![release](https://img.shields.io/github/v/release/eyesclose/betterswiftify?style=for-the-badge&color=6750a4&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/releases/latest)
+[![downloads](https://img.shields.io/github/downloads/eyesclose/betterswiftify/total?style=for-the-badge&color=6750a4&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/releases)
+[![build](https://img.shields.io/github/actions/workflow/status/eyesclose/betterswiftify/prebuilt.yml?branch=main&style=for-the-badge&label=build&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/actions/workflows/prebuilt.yml)
+[![license](https://img.shields.io/github/license/eyesclose/betterswiftify?style=for-the-badge&color=6750a4&labelColor=1d1b20)](LICENSE)
+
+[![qt quick](https://img.shields.io/badge/Qt_Quick-6.10+-41cd52?style=for-the-badge&logo=qt&logoColor=white&labelColor=1d1b20)](https://www.qt.io)
+[![rust core](https://img.shields.io/badge/core-rust-dea584?style=for-the-badge&logo=rust&logoColor=white&labelColor=1d1b20)](spotify-core)
+[![english](https://img.shields.io/badge/ui-english_·_русский-6750a4?style=for-the-badge&labelColor=1d1b20)](#whats-different)
+
+**[download](#install)** · **[first launch](#first-launch)** · **[good to know](#good-to-know)** · **[build from source](#build-from-source)** · **[upstream](https://github.com/swiftify-org/swiftify)**
+
+<br>
+
+<img src="docs/screenshots/showcase-home.png" alt="betterswiftify home with dj mix, pinned playlists and the current track" width="880">
+
+</div>
+
+<br>
+
+this is my personal fork of [swiftify](https://github.com/swiftify-org/swiftify), not a separate project built from scratch. i keep what i use, add what i miss, and remove what feels like clutter to me. it follows my preferences, not a plan to be the right client for everyone.
+
+the foundation is still c++ and qt quick, with a rust core built around [librespot](https://github.com/librespot-org/librespot). no electron, no bundled web browser.
+
+<div align="center">
+<table>
+  <tr>
+    <td width="50%"><img src="docs/screenshots/showcase-lyrics.png" alt="fullscreen player with synced lyrics"></td>
+    <td width="50%"><img src="docs/screenshots/showcase-player.png" alt="fullscreen artwork and playback controls"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>synced lyrics on a cover-colored background</sub></td>
+    <td align="center"><sub>just the artwork, the track and the controls</sub></td>
+  </tr>
+</table>
+</div>
+
+## what's different
 
 <table>
   <tr>
-    <td width="50%"><img src="docs/screenshots/showcase-lyrics.png" alt="fullscreen player with synced lyrics" /></td>
-    <td width="50%"><img src="docs/screenshots/showcase-player.png" alt="fullscreen artwork and playback controls" /></td>
+    <td width="33%" valign="top">
+
+### 🧹 less clutter
+local-file management, playlist-link collections and extra connect-device settings are gone. fullscreen visualizers are switched inside the fullscreen player.
+
+</td>
+    <td width="33%" valign="top">
+
+### 🎨 cover-driven themes
+the whole interface follows the current artwork. light and dark presets, including aurora and desert bloom, plus optional matugen.
+
+</td>
+    <td width="33%" valign="top">
+
+### 🎧 personal dj mix
+one button builds up to 40 tracks from your mixes, favourites, recent listening and top tracks, artists spaced apart.
+
+</td>
   </tr>
   <tr>
-    <td><sub>synced lyrics and a cover-colored background</sub></td>
-    <td><sub>just the artwork, the track and the controls</sub></td>
+    <td valign="top">
+
+### 🔁 librespot first
+an audio-key refusal switches playback to spotify's official soloist client. setup lives in settings.
+
+</td>
+    <td valign="top">
+
+### 🌍 english and русский
+live language switching, translated dialogs and errors, dates and numbers in the chosen language.
+
+</td>
+    <td valign="top">
+
+### 🔐 less login friction
+encrypted logins with automatic vault unlock on macos and windows, plus signed in-app updates.
+
+</td>
   </tr>
 </table>
 
-## what's different here
-
-- **less clutter.** local-file management, playlist-link collections and the extra librespot connect-device settings are removed. fullscreen visualizers are controlled inside the fullscreen player, without a second switch in settings.
-- **cover-driven themes.** the whole interface can follow the current artwork. there are also light and dark presets, including aurora and desert bloom, plus optional matugen integration.
-- **a personal dj mix.** one button builds a queue from your spotify mixes, favourites, recent listening and top tracks by those artists. up to 40 tracks, no duplicate tracks, and different artists next to each other where possible.
-- **librespot first, soloist when needed.** an audio-key refusal can switch playback to spotify's official soloist client. installation and api-key setup live in settings.
-- **english and russian.** live language switching, translated dialogs and errors, and dates and numbers that follow the selected language.
-- **less login friction.** encrypted spotify logins with automatic vault unlock on macos and windows. existing vaults need their old password once to migrate.
-- **installers and updates.** macos disk images, a windows setup executable, and signed in-app update packages.
-
-the rest of the player is here too: search, saved songs, playlists, pinned playlists, synced lyrics, an equalizer, a sleep timer, media keys, optional discord activity and listening stats.
+and the rest of a proper player: search, saved songs, playlists, pinned playlists, synced lyrics, an equalizer, a sleep timer, media keys, optional discord activity and listening stats.
 
 ## install
 
-get this fork from **[github releases](https://github.com/ceoweb20/swiftify/releases/latest)**. upstream downloads are a different build.
+> [!IMPORTANT]
+> you need **spotify premium** and **your own spotify client id**, see [first launch](#first-launch). downloads come from this repository's releases; upstream downloads are a different build.
+
+<div align="center">
+
+[![macos apple silicon](https://img.shields.io/badge/macos-apple_silicon-6750a4?style=for-the-badge&logo=apple&logoColor=white&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/releases/latest)
+[![macos intel](https://img.shields.io/badge/macos-intel-6750a4?style=for-the-badge&logo=apple&logoColor=white&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/releases/latest)
+[![windows](https://img.shields.io/badge/windows-x64_setup-6750a4?style=for-the-badge&logo=windows&logoColor=white&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/releases/latest)
+[![linux](https://img.shields.io/badge/linux-x86__64_zip-6750a4?style=for-the-badge&logo=linux&logoColor=white&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/releases/latest)
+
+</div>
 
 | platform | download | installation |
 | --- | --- | --- |
 | macos · apple silicon | `macos-aarch64.dmg` | open the image and drag the app to applications |
 | macos · intel | `macos-x86_64.dmg` | same, but soloist is unavailable on intel macs |
-| windows · x64 | `windows-x86_64-setup.exe` | run setup; it adds shortcuts and an uninstaller without requiring administrator access |
+| windows · x64 | `windows-x86_64-setup.exe` | run setup; it adds shortcuts and an uninstaller, no administrator access needed |
 | linux · x64 | `linux-x86_64.zip` | extract it and run `./Swiftify/bin/swiftify` |
 
-the filenames also include the version number. screenshots show the current code; a published release can lag behind while builds finish.
+the filenames also include the version number. a published release can lag behind the code while builds finish.
 
-linux packages bundle qt, but still need the host's audio and system libraries, including alsa, pulseaudio or pipewire-pulse, glib and dbus. macos builds are not notarized, and windows builds are not authenticode-signed, so the os may ask you to approve the first launch.
+> [!NOTE]
+> macos builds are not notarized and windows builds are not authenticode-signed, so the os may ask you to approve the first launch. linux packages bundle qt but still need the host's audio and system libraries: alsa, pulseaudio or pipewire-pulse, glib and dbus.
 
 the other zip files are portable builds and update payloads. `.json` and `.sig` files are update metadata, not installers. keep a portable installation's files together.
 
@@ -85,15 +154,21 @@ soloist is downloaded directly from spotify, not bundled or redistributed. offic
 
 manual installations also work: put the executable on your path, use `SWIFTIFY_SOLOIST` to point to it, or use [the shell installer](tools/install-soloist.sh) / [the powershell installer](tools/install-soloist.ps1). a key can also be supplied through `SOLOIST_API_KEY` or the `soloist/api-key` file in the system configuration directory.
 
-## a few things worth knowing
+## good to know
 
-### dj mix is not spotify ai dj
+<details>
+<summary><b>dj mix is not spotify ai dj</b></summary>
+<br>
 
 the button on home assembles a local queue using the music available to your account. it removes duplicate and unplayable tracks, avoids immediately replaying the current song, and tries to space artists apart. **new dj mix** builds another queue.
 
 it is not spotify's ai dj algorithm, has no announcer, and does not create a playlist on your account. spotify does not expose an official api for controlling ai dj. if personalized playlists are unavailable, swiftify falls back to your library and listening history. a failed or cancelled request leaves your existing queue alone.
 
-### themes and fullscreen playback
+</details>
+
+<details>
+<summary><b>themes and fullscreen playback</b></summary>
+<br>
 
 choose **settings → appearance → colours → cover colors** to let the interface follow the playing cover. palettes are cached and calculated off the ui thread; they fade between tracks and fall back to the default palette when artwork is missing.
 
@@ -103,7 +178,11 @@ the fullscreen player's sound panel has its own visualizer switch. the global vi
 
 scrolling vertically over a playlist or genre shelf still moves the page. use a horizontal trackpad gesture, shift + mouse wheel, or the horizontal scrollbar to move through the shelf itself.
 
-### soloist audio and lossless
+</details>
+
+<details>
+<summary><b>soloist audio and lossless</b></summary>
+<br>
 
 soloist supports lossless playback up to **24-bit / 44.1 khz** with premium, according to [spotify's documentation](https://github.com/spotify/soloist). availability also depends on the account and region. its current api cannot set or verify the delivered quality, so swiftify does not pretend that a local switch can enable it.
 
@@ -111,7 +190,11 @@ the lossless information section appears when the soloist backend is selected. t
 
 on macos and windows, soloist outputs directly to the system, outside the rust audio pipeline. rust-side equalizer, spectrum analysis, tempo and pitch processing do not apply to that output. linux with pipewire can route soloist through swiftify for the equalizer and visualizers; `SWIFTIFY_SOLOIST_ROUTE=off` disables that route. soloist playback also does not use swiftify's librespot crossfade.
 
-### saved logins
+</details>
+
+<details>
+<summary><b>saved logins</b></summary>
+<br>
 
 spotify logins stay in an encrypted vault outside the application directory. macos can remember its unlock password in keychain; windows uses user-scoped dpapi encryption. new installations create a random vault password automatically.
 
@@ -119,17 +202,27 @@ if you already have a password-protected vault, enter its old password **once** 
 
 reinstalling the app does not require deleting your data. see [vault storage and recovery](docs/credential-vault.md) before moving or resetting the credential files.
 
-### discord and listening stats
+</details>
+
+<details>
+<summary><b>discord and listening stats</b></summary>
+<br>
 
 discord activity is optional and off by default. create an app in the [discord developer portal](https://discord.com/developers/applications), then paste its application id into **settings → account → discord rich presence**. no bot token is needed. discord's desktop app and activity-sharing permission must be enabled. this is rich presence, not spotify's linked-account activity or listen along.
 
 the stats page can use local listening history or a public [stats.fm](https://stats.fm) profile. local history stays on your computer and can be exported as csv. its collection can be disabled in settings.
 
-### updates and restarting
+</details>
+
+<details>
+<summary><b>updates and restarting</b></summary>
+<br>
 
 release builds can check for updates and install them while nothing is playing. both automatic checking and installation can be disabled under **settings → about → updates**. system-package installations should use their package manager instead.
 
 the player remembers the last track, position and queue, but restores them **paused**. opening the app should not start music by itself.
+
+</details>
 
 ## build from source
 
@@ -138,8 +231,8 @@ you need git, a c++20 compiler, **qt 6.10 or newer**, qcoro for qt 6, cmake 3.24
 qt needs the base, declarative, shader tools and websockets modules. linux also needs the pulse/alsa and openssl development packages. the first configure downloads corrosion and the interface/icon fonts, with pinned versions or hashes.
 
 ```sh
-git clone https://github.com/ceoweb20/swiftify.git
-cd swiftify
+git clone https://github.com/eyesclose/betterswiftify.git
+cd betterswiftify
 ```
 
 <details>
@@ -217,7 +310,7 @@ the setup executable is built with inno setup 6 through [the installer packager]
 
 </details>
 
-### tests
+### run the tests
 
 for a manual cmake build, configure with testing enabled, then build and run:
 
@@ -241,16 +334,18 @@ only one instance runs at a time. launching another copy passes the command to t
 | `--previous` | previous track |
 | `--stats` | open listening stats |
 
-## problems and project notes
+## troubleshooting
 
 - **login does not return to the app:** check the redirect uri above and make sure port `8898` is not occupied.
-- **“the update download url was refused” after the repository rename:** install the current version from [releases](https://github.com/ceoweb20/swiftifyplusplus/releases/latest) once. older builds cannot follow the renamed api address to fetch their own fix. keep the data directory; a manual app replacement does not require deleting your logins or settings.
+- **“the update download url was refused” after a repository rename:** install the current version from [releases](https://github.com/eyesclose/betterswiftify/releases/latest) once. older builds cannot follow the renamed api address to fetch their own fix. keep the data directory; a manual app replacement does not require deleting your logins or settings.
 - **spotify refuses the audio key:** configure soloist rather than repeatedly reconnecting librespot.
 - **soloist is not listed in spotify:** check that both devices are on the same network and that a firewall is not blocking discovery. pairing from the desktop app on the same computer can help.
 - **the vault asks again after migration:** secure storage was unavailable or access was denied. on macos, changing the build's signing identity can also break keychain trust.
 - **personalized playlists are missing:** that feed uses an internal spotify interface and can change or be unavailable for an account. the ordinary library and dj mix's library fallback do not require it.
 
-report fork-specific problems in [this repository's issues](https://github.com/ceoweb20/swiftify/issues), with your os, app version and playback backend. leave api keys and tokens out of logs and screenshots.
+## about this fork
+
+report fork-specific problems in [this repository's issues](https://github.com/eyesclose/betterswiftify/issues), with your os, app version and playback backend. leave api keys and tokens out of logs and screenshots.
 
 this is a personal fork, so features and fixes follow what i use. if you want to propose a larger change, open an issue before writing it. upstream remains the source of the original player and most of its interface; please don't send fork-specific bug reports there.
 
@@ -258,4 +353,4 @@ thanks to [the original swiftify project](https://github.com/swiftify-org/swifti
 
 ## license
 
-swiftify is licensed under the gnu gpl v3 or later, see [LICENSE](LICENSE)
+gpl v3 or later, see [LICENSE](LICENSE). betterswiftify is a fork of [swiftify](https://github.com/swiftify-org/swiftify) and keeps its license.
