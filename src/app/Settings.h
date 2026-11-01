@@ -49,6 +49,7 @@ class Settings : public QObject {
     Q_PROPERTY(QString visualizerShape READ visualizerShape WRITE setVisualizerShape NOTIFY visualizerShapeChanged FINAL)
     Q_PROPERTY(double visualizerSensitivity READ visualizerSensitivity WRITE setVisualizerSensitivity NOTIFY visualizerSensitivityChanged FINAL)
     Q_PROPERTY(int streamingQuality READ streamingQuality WRITE setStreamingQuality NOTIFY streamingQualityChanged FINAL)
+    Q_PROPERTY(QString playbackEngine READ playbackEngine WRITE setPlaybackEngine NOTIFY playbackEngineChanged FINAL)
     Q_PROPERTY(bool normalizeVolume READ normalizeVolume WRITE setNormalizeVolume NOTIFY normalizeVolumeChanged FINAL)
     Q_PROPERTY(bool crossfadeEnabled READ crossfadeEnabled WRITE setCrossfadeEnabled NOTIFY crossfadeEnabledChanged FINAL)
     /// shows in Spotify as a Connect device and reports what plays to the account, which a scrobbling bot reads; it cannot be controlled from other apps
@@ -144,6 +145,8 @@ public:
     int songCacheMegabytes() const { return m_songCacheMegabytes; }
     void setSongCacheMegabytes(int megabytes);
     void setStreamingQuality(int value);
+    QString playbackEngine() const { return m_playbackEngine; }
+    void setPlaybackEngine(const QString &value);
     bool normalizeVolume() const { return m_normalizeVolume; }
     void setNormalizeVolume(bool value);
     bool crossfadeEnabled() const { return m_crossfadeEnabled; }
@@ -233,6 +236,7 @@ signals:
     void visualizerShapeChanged();
     void visualizerSensitivityChanged();
     void streamingQualityChanged();
+    void playbackEngineChanged();
     void normalizeVolumeChanged();
     void crossfadeEnabledChanged();
     void crossfadeDurationSecondsChanged();
@@ -280,6 +284,7 @@ private:
     QString m_visualizerShape = QStringLiteral("bars");
     double m_visualizerSensitivity = 1.0;
     int m_streamingQuality = 160;
+    QString m_playbackEngine = QStringLiteral("librespot");
     bool m_normalizeVolume = false;
     bool m_crossfadeEnabled = false;
     int m_crossfadeDurationSeconds = 5;

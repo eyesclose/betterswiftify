@@ -851,6 +851,17 @@ void PlaybackController::pause()
     }
 }
 
+void PlaybackController::engineSwitched()
+{
+    if (!m_currentSong) {
+        return;
+    }
+    pause();
+    m_resumePositionMs = m_livePositionMs;
+    m_playbackNeedsLoad = true;
+    m_restoredPlayback = true;
+}
+
 void PlaybackController::resume()
 {
     if (!m_currentSong) {

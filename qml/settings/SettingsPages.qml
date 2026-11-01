@@ -245,6 +245,27 @@ Item {
                 symbol: "high_quality"
 
                 ConfigSelection {
+                    objectName: "playbackEngineSelection"
+                    text: qsTr("Play music through")
+                    enabled: Soloist.supported
+                    currentIndex: Settings.playbackEngine === "soloist" && Soloist.supported ? 1 : 0
+                    segments: [
+                        Segment { text: "Librespot" },
+                        Segment { text: "Soloist" }
+                    ]
+                    onActivated: (index) => Settings.playbackEngine = index === 1 ? "soloist" : "librespot"
+                }
+                NoteText {
+                    objectName: "playbackEngineNote"
+                    text: !Soloist.supported
+                          ? qsTr("Spotify Soloist has no build for this computer, so Librespot plays.")
+                          : Settings.playbackEngine === "soloist" && (!Soloist.installed || !Soloist.apiKeyConfigured)
+                            ? qsTr("Soloist needs to be installed and given your API key first. Set it up in Account → Spotify Soloist.")
+                            : Settings.playbackEngine === "soloist"
+                              ? qsTr("Soloist plays Spotify's own stream, with Lossless where your account has it.")
+                              : qsTr("Librespot plays by default and hands over to Soloist if Spotify refuses its audio key.")
+                }
+                ConfigSelection {
                     text: qsTr("Streaming")
                     visible: !Soloist.active
                     currentIndex: Math.max(0, root.qualities.indexOf(Settings.streamingQuality))
@@ -722,13 +743,13 @@ Item {
                 }
                 NoteText {
                     text: !Soloist.supported
-                          ? qsTr("Librespot is the default player. Spotify Soloist fallback is available on Linux, Apple Silicon Macs and 64-bit Windows.")
+                          ? qsTr("Librespot is the default player. Spotify Soloist is available on Linux, Apple Silicon Macs and 64-bit Windows.")
                           : Soloist.busy && Soloist.progress >= 0
                             ? qsTr("Downloading from Spotify: ") + Math.round(Soloist.progress * 100) + "%"
                             : Soloist.status.length > 0 ? qsTranslate("Soloist", Soloist.status)
                             : Soloist.updateRecommended
                               ? qsTr("This Soloist build is close to its 90-day expiry. Reinstall it to keep playback working.")
-                              : qsTr("Librespot plays by default. If Spotify refuses its audio key (which can happen on newer accounts), Swiftify switches to Soloist. Install Soloist here and enter your own API key from the developer dashboard. Pick “Swiftify” in Spotify's devices once to pair.")
+                              : qsTr("Choose Soloist under Audio Quality to play through it, or leave Librespot, which switches to Soloist if Spotify refuses its audio key (which can happen on newer accounts). Install Soloist here and enter your own API key from the developer dashboard. Pick “Swiftify” in Spotify's devices once to pair.")
                 }
             }
 

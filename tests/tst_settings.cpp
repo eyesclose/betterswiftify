@@ -109,6 +109,7 @@ private slots:
         QCOMPARE(settings.visualizerSensitivity(), 1.0);
         QCOMPARE(settings.streamingQuality(), 160);
         QCOMPARE(settings.normalizeVolume(), false);
+        QCOMPARE(settings.playbackEngine(), QStringLiteral("librespot"));
         QCOMPARE(settings.songCacheMegabytes(), 1000);
         QCOMPARE(settings.livingBackdrop(), true);
         QCOMPARE(settings.backdropBlur(), 16.0);
@@ -214,6 +215,12 @@ private slots:
             settings.setContinuousVisualizer(true);
             QCOMPARE(continuousSpy.count(), 1);
             settings.setStreamingQuality(96);
+            QSignalSpy engineSpy(&settings, &Settings::playbackEngineChanged);
+            settings.setPlaybackEngine(QStringLiteral("soloist"));
+            settings.setPlaybackEngine(QStringLiteral("soloist"));
+            settings.setPlaybackEngine(QStringLiteral("bogus"));
+            QCOMPARE(engineSpy.count(), 2);
+            settings.setPlaybackEngine(QStringLiteral("soloist"));
             QSignalSpy normalizeSpy(&settings, &Settings::normalizeVolumeChanged);
             settings.setNormalizeVolume(true);
             settings.setNormalizeVolume(true);
@@ -237,6 +244,7 @@ private slots:
         QCOMPARE(reopened.continuousVisualizer(), true);
         QCOMPARE(reopened.streamingQuality(), 96);
         QCOMPARE(reopened.normalizeVolume(), true);
+        QCOMPARE(reopened.playbackEngine(), QStringLiteral("soloist"));
         QCOMPARE(reopened.songCacheMegabytes(), 2000);
         QVERIFY(reopened.performanceMode());
         QVERIFY(reopened.noShapes());

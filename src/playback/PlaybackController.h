@@ -178,6 +178,9 @@ public:
     Q_INVOKABLE void playFromQueue(const swiftify::Song &song);
     Q_INVOKABLE void togglePlayback();
     Q_INVOKABLE void pause();
+    /// the core playing is another one now: the song stays, paused, and play
+    /// loads it again on the new one from where it was
+    void engineSwitched();
     /// play from where it is, rebuilding the output or reloading as needed
     Q_INVOKABLE void resume();
     Q_INVOKABLE void skipForward();

@@ -891,6 +891,24 @@ private slots:
         QVERIFY(!pages->findChild<QObject *>(QStringLiteral("spotifyConnectSwitch")));
     }
 
+    void theSettingsChoosePlaybackEngine()
+    {
+        SoloistInstaller installer(nullptr);
+        Rig rig;
+        rig.settings.setLanguage(QStringLiteral("en"));
+        const auto pages = rig.show(QStringLiteral("SettingsPages"));
+        QVERIFY(pages);
+        pages->setProperty("page", 2);
+        Rig::settle();
+        auto *selection = pages->findChild<QQuickItem *>(QStringLiteral("playbackEngineSelection"));
+        QVERIFY(selection);
+        QCOMPARE(selection->property("currentIndex").toInt(), 0);
+        QVERIFY(QMetaObject::invokeMethod(selection, "activated", Q_ARG(int, 1)));
+        QCOMPARE(rig.settings.playbackEngine(), QStringLiteral("soloist"));
+        QVERIFY(QMetaObject::invokeMethod(selection, "activated", Q_ARG(int, 0)));
+        QCOMPARE(rig.settings.playbackEngine(), QStringLiteral("librespot"));
+    }
+
     void vaultPasswordDialog_data()
     {
         QTest::addColumn<bool>("existing");

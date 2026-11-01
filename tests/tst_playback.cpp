@@ -185,6 +185,29 @@ private slots:
         }
     }
 
+    void switchingTheEngineParksTheSongAndPlayLoadsItAgainFromWhereItWas()
+    {
+        Rig rig;
+        const auto songs = makeQueue(2);
+        rig.player.play(songs[0], songs);
+        rig.finishLoading();
+        rig.core.duration = 200000;
+        rig.player.seek(42000);
+        QVERIFY(rig.player.isPlaying());
+
+        rig.player.engineSwitched();
+        QVERIFY(!rig.player.isPlaying());
+        QVERIFY(rig.player.hasSong());
+        QCOMPARE(rig.player.currentSong().name, songs[0].name);
+        QCOMPARE(rig.player.positionMs(), 42000);
+        QVERIFY(rig.core.log.contains(QStringLiteral("pause")));
+
+        rig.player.resume();
+        rig.finishLoading();
+        QVERIFY(rig.player.isPlaying());
+        QVERIFY(rig.core.log.contains(QStringLiteral("seek 42000")));
+    }
+
     void restoredQueueRetainsShuffleOrderAndRepeat()
     {
         QTemporaryDir directory;

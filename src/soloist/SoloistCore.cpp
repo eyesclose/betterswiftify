@@ -272,10 +272,44 @@ void SoloistCore::stopDaemon()
 
 void SoloistCore::reloadConfiguration()
 {
+    const bool tryLibrespot = m_config.tryLibrespot;
     m_config = configured();
+    m_config.tryLibrespot = tryLibrespot;
     stopDaemon();
     m_failure.clear();
     if (m_useSoloist) startDaemon();
+    emit stateChanged();
+}
+
+void SoloistCore::setPreferSoloist(bool prefer)
+{
+    if (m_config.tryLibrespot == !prefer) {
+        return;
+    }
+    m_config.tryLibrespot = !prefer;
+    if (prefer) {
+        useSoloist();
+        startDaemon();
+    } else {
+        stopSoloist();
+        stopDaemon();
+        m_useSoloist = false;
+        emit backendChanged();
+        // waiting soloist calls end, and what soloist was told about is moot
+        ++m_resets;
+        m_expectedUri.clear();
+        m_expectedStarted = false;
+        m_endOfTrack = false;
+        m_endAtMs = 0;
+        m_remote = false;
+        m_reportedPlaying.reset();
+        m_failure.clear();
+        gate(false);
+        try {
+            m_fallback->setVolume(m_volume);
+        } catch (const SpotifyError &) {
+        }
+    }
     emit stateChanged();
 }
 

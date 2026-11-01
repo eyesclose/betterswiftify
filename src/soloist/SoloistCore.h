@@ -75,6 +75,9 @@ public:
     /// stops the child process, as an update of its binary needs
     void stopDaemon();
     bool usingSoloist() const { return m_useSoloist; }
+    /// plays through soloist from now on instead of trying librespot first, or
+    /// goes back to librespot (which still hands over if its key is refused)
+    void setPreferSoloist(bool prefer);
 
     QCoro::Task<QString> connectSession(QString accessToken, QString clientId) override;
     QCoro::Task<QString> connectStoredSession(QString login, QString clientId) override;

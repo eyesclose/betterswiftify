@@ -290,6 +290,49 @@ private slots:
         QCoro::waitFor(again);
     }
 
+    void preferringSoloistPlaysThroughItAndBackToLibrespotAgain()
+    {
+        m_core.reset();
+        m_core = std::make_unique<SoloistCore>(m_fallback.get(),
+            SoloistConfig{m_program, QStringLiteral("key"), m_dir->filePath(QStringLiteral("data"))});
+        QSignalSpy backend(m_core.get(), &SoloistCore::backendChanged);
+        QVERIFY(!m_core->usingSoloist());
+
+        m_core->setPreferSoloist(true);
+        QVERIFY(m_core->usingSoloist());
+        QCOMPARE(backend.count(), 1);
+        QVERIFY(m_fallback->log.contains(QStringLiteral("pause")));
+        QCoro::waitFor(m_core->playTrack(QStringLiteral("spotify:track:a")));
+        QVERIFY(m_soloist->commandNames().contains(QStringLiteral("play")));
+        QVERIFY(!m_fallback->take(QStringLiteral("playTrack")));
+        // the same choice again changes nothing
+        m_core->setPreferSoloist(true);
+        QCOMPARE(backend.count(), 1);
+
+        m_core->setPreferSoloist(false);
+        QVERIFY(!m_core->usingSoloist());
+        QCOMPARE(backend.count(), 2);
+        auto task = m_core->playTrack(QStringLiteral("spotify:track:b"));
+        const auto call = m_fallback->take(QStringLiteral("playTrack"));
+        QVERIFY(call);
+        call->succeed();
+        QCoro::waitFor(task);
+    }
+
+    void preferredSoloistStaysAfterTheConfigurationIsReloaded()
+    {
+        m_core.reset();
+        m_core = std::make_unique<SoloistCore>(m_fallback.get(),
+            SoloistConfig{m_program, QStringLiteral("key"), m_dir->filePath(QStringLiteral("data"))});
+        m_core->setPreferSoloist(true);
+        m_core->reloadConfiguration();
+        m_core->reset();
+        QVERIFY(m_core->usingSoloist());
+        m_core->setPreferSoloist(false);
+        m_core->reset();
+        QVERIFY(!m_core->usingSoloist());
+    }
+
     void unrelatedLibrespotErrorsDoNotSwitchPlayers_data()
     {
         QTest::addColumn<QString>("message");

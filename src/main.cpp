@@ -315,6 +315,10 @@ int main(int argc, char *argv[])
     QObject::connect(&soloistCore, &SoloistCore::backendChanged, &soloistInstaller, [&] {
         soloistInstaller.setActive(soloistCore.usingSoloist());
     });
+    const auto wantsSoloist = [&] {
+        return settings.playbackEngine() == QStringLiteral("soloist") && soloistInstaller.supported();
+    };
+    soloistCore.setPreferSoloist(wantsSoloist());
     QObject::connect(&soloistInstaller, &SoloistInstaller::configurationChanged,
                      &soloistCore, &SoloistCore::reloadConfiguration);
     QObject::connect(&soloistInstaller, &SoloistInstaller::busyChanged, &soloistCore, [&] {
@@ -346,6 +350,13 @@ int main(int argc, char *argv[])
     CachedCredentialStore credentials(&vault);
     SpotifySession session(&core, &credentials, &network, &errors);
     PlaybackController player(&core, &session, &settings, &errors);
+    QObject::connect(&settings, &Settings::playbackEngineChanged, &soloistCore, [&] {
+        // the song in the core is the old engine's, so pause it there first
+        if (wantsSoloist() != soloistCore.usingSoloist()) {
+            player.engineSwitched();
+        }
+        soloistCore.setPreferSoloist(wantsSoloist());
+    });
     DiscordPresence discord(&player, &settings);
     LibraryStore library(&session, &settings, &errors);
     library.attachPlayer(&player);

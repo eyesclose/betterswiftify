@@ -70,8 +70,8 @@ one button builds up to 40 tracks from your mixes, favourites, recent listening 
   <tr>
     <td valign="top">
 
-### 🔁 librespot first
-an audio-key refusal switches playback to spotify's official soloist client. setup lives in settings.
+### 🔁 librespot or soloist
+pick the player in settings → audio quality. librespot hands over to spotify's official soloist client if an audio key is refused.
 
 </td>
     <td valign="top">
@@ -137,6 +137,8 @@ you need a spotify premium account for librespot playback, and a client id from 
 use the same spotify account for the library and playback if you want personalized mixes to match. the spotify api can restrict some playlists or library operations; swiftify cannot grant permissions that spotify does not provide.
 
 ### if librespot cannot play
+
+you can also choose soloist yourself: **settings → audio quality → play music through → soloist**. the lossless section appears there once it is active.
 
 some accounts, particularly newer ones, are refused the audio keys librespot needs. swiftify detects that refusal and switches to **[spotify soloist](https://developer.spotify.com/documentation/soloist)**. an ordinary network error or an unavailable track does not trigger the switch.
 
