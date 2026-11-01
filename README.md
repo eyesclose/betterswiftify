@@ -6,16 +6,18 @@
 
 **a spotify desktop player, the way i want to use it.**
 
-material 3 expressive · cover-driven themes · personal dj mix · no electron
+material 3 expressive · qt quick · rust core · no electron
 
-[![release](https://img.shields.io/github/v/release/eyesclose/betterswiftify?style=for-the-badge&color=6750a4&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/releases/latest)
+[![version](https://img.shields.io/github/v/release/eyesclose/betterswiftify?style=for-the-badge&label=version&color=6750a4&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/releases/latest)
+[![released](https://img.shields.io/github/release-date/eyesclose/betterswiftify?style=for-the-badge&label=released&color=6750a4&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/releases/latest)
 [![downloads](https://img.shields.io/github/downloads/eyesclose/betterswiftify/total?style=for-the-badge&color=6750a4&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/releases)
 [![build](https://img.shields.io/github/actions/workflow/status/eyesclose/betterswiftify/prebuilt.yml?branch=main&style=for-the-badge&label=build&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/actions/workflows/prebuilt.yml)
 [![license](https://img.shields.io/github/license/eyesclose/betterswiftify?style=for-the-badge&color=6750a4&labelColor=1d1b20)](LICENSE)
 
-[![qt quick](https://img.shields.io/badge/Qt_Quick-6.10+-41cd52?style=for-the-badge&logo=qt&logoColor=white&labelColor=1d1b20)](https://www.qt.io)
-[![rust core](https://img.shields.io/badge/core-rust-dea584?style=for-the-badge&logo=rust&logoColor=white&labelColor=1d1b20)](spotify-core)
-[![english](https://img.shields.io/badge/ui-english_·_русский-6750a4?style=for-the-badge&labelColor=1d1b20)](#whats-different)
+[![qt quick](https://img.shields.io/badge/Qt_Quick-6.10+-41cd52?style=flat-square&logo=qt&logoColor=white&labelColor=1d1b20)](https://www.qt.io)
+[![rust core](https://img.shields.io/badge/core-rust-dea584?style=flat-square&logo=rust&logoColor=white&labelColor=1d1b20)](spotify-core)
+[![platforms](https://img.shields.io/badge/macos_%C2%B7_windows_%C2%B7_linux-6750a4?style=flat-square&labelColor=1d1b20)](#install)
+[![ui](https://img.shields.io/badge/ui-english_%C2%B7_%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9-6750a4?style=flat-square&labelColor=1d1b20)](#whats-different)
 
 **[download](#install)** · **[first launch](#first-launch)** · **[good to know](#good-to-know)** · **[build from source](#build-from-source)** · **[upstream](https://github.com/swiftify-org/swiftify)**
 
@@ -50,19 +52,19 @@ the foundation is still c++ and qt quick, with a rust core built around [libresp
   <tr>
     <td width="33%" valign="top">
 
-### 🧹 less clutter
+### less clutter
 local-file management, playlist-link collections and extra connect-device settings are gone. fullscreen visualizers are switched inside the fullscreen player.
 
 </td>
     <td width="33%" valign="top">
 
-### 🎨 cover-driven themes
+### cover-driven themes
 the whole interface follows the current artwork. light and dark presets, including aurora and desert bloom, plus optional matugen.
 
 </td>
     <td width="33%" valign="top">
 
-### 🎧 personal dj mix
+### personal dj mix
 one button builds up to 40 tracks from your mixes, favourites, recent listening and top tracks, artists spaced apart.
 
 </td>
@@ -70,19 +72,19 @@ one button builds up to 40 tracks from your mixes, favourites, recent listening 
   <tr>
     <td valign="top">
 
-### 🔁 librespot or soloist
+### librespot or soloist
 pick the player in settings → audio quality. librespot hands over to spotify's official soloist client if an audio key is refused.
 
 </td>
     <td valign="top">
 
-### 🌍 english and русский
+### english and русский
 live language switching, translated dialogs and errors, dates and numbers in the chosen language.
 
 </td>
     <td valign="top">
 
-### 🔐 less login friction
+### less login friction
 encrypted logins with automatic vault unlock on macos and windows, plus signed in-app updates.
 
 </td>
@@ -98,6 +100,8 @@ and the rest of a proper player: search, saved songs, playlists, pinned playlist
 
 <div align="center">
 
+[![latest release](https://img.shields.io/github/v/release/eyesclose/betterswiftify?style=flat-square&label=latest%20release&color=6750a4&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/releases/latest)
+
 [![macos apple silicon](https://img.shields.io/badge/macos-apple_silicon-6750a4?style=for-the-badge&logo=apple&logoColor=white&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/releases/latest)
 [![macos intel](https://img.shields.io/badge/macos-intel-6750a4?style=for-the-badge&logo=apple&logoColor=white&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/releases/latest)
 [![windows](https://img.shields.io/badge/windows-x64_setup-6750a4?style=for-the-badge&logo=windows&logoColor=white&labelColor=1d1b20)](https://github.com/eyesclose/betterswiftify/releases/latest)
@@ -112,7 +116,7 @@ and the rest of a proper player: search, saved songs, playlists, pinned playlist
 | windows · x64 | `windows-x86_64-setup.exe` | run setup; it adds shortcuts and an uninstaller, no administrator access needed |
 | linux · x64 | `linux-x86_64.zip` | extract it and run `./Swiftify/bin/swiftify` |
 
-the filenames also include the version number. a published release can lag behind the code while builds finish.
+the filenames include the version number of the release shown above. a published release can lag behind the code while builds finish.
 
 > [!NOTE]
 > macos builds are not notarized and windows builds are not authenticode-signed, so the os may ask you to approve the first launch. linux packages bundle qt but still need the host's audio and system libraries: alsa, pulseaudio or pipewire-pulse, glib and dbus.
